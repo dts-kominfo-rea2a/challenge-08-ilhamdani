@@ -9,14 +9,26 @@
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <div id="todo-title">
+        <h1>To-Do App</h1>
+      </div>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <div id="todo-subtitle">
+        <h2>My Task</h2>
+      </div>
 
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
-
+      <section>
+        <input id="todo-input" type="text" name="input" placeholder="input your activity">
+        <button id="todo-submit" type="button">Submit</button>
+      </section>
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+      <section>
+        <ul id="todo-output"></ul>
+      </section>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
@@ -29,13 +41,30 @@
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        output = document.createElement('li')
+        input = document.getElementById('todo-input').value
+        result = document.createTextNode(input)
+        output.appendChild(result)
+        
+        document.getElementById('todo-output').append(output)
+        
+        document.getElementById('todo-input').value=''
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button = document.getElementById('todo-submit');
+      button.addEventListener('click', fnClickHandler)
       
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      onKeyPressBtn = document.getElementById('todo-input');
+      onKeyPressBtn.addEventListener('keypress', (event) => {
+        if(event.key === 'Enter' || event.keyCode ==13) {
+          fnClickHandler()
+        }
+      })
     </script>
   </body>
 </html>
